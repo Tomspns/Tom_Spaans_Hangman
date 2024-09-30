@@ -16,7 +16,9 @@
         </Grid.RowDefinitions>
 
         <!-- Zone titre-->
-        <Grid x:Name="Zone_titre" Grid.Row="0"></Grid>
+        <Grid x:Name="Zone_titre" Grid.Row="0">
+            <Label Content="HANGMAN"></Label>
+        </Grid>
 
         <!-- Zone jeu-->
         <Grid x:Name="Zone_jeu" Grid.Row="1">
