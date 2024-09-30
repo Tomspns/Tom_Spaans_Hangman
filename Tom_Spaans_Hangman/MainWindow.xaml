@@ -5,8 +5,112 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tom_Spaans_Hangman"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="SPAANS_Hangman" Height="450" Width="800">
+    <Grid Background="AntiqueWhite">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="6*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!-- Zone titre-->
+        <Grid x:Name="Zone_titre" Grid.Row="0"></Grid>
+
+        <!-- Zone jeu-->
+        <Grid x:Name="Zone_jeu" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <!-- Zone image-->
+            <Grid x:Name="Zone_image" Grid.Column="0">
+            </Grid>
+
+            <!-- Zone keyboard-->
+            <Grid x:Name="Zone_keyboard" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Button Grid.Row="0" Grid.Column="0" Name="BTN_A" Content="A" Click="BTN_A_Click"></Button>
+                <Button Grid.Row="0" Grid.Column="1" Name="BTN_B" Content="B" Click="BTN_B_Click"></Button>
+                <Button Grid.Row="0" Grid.Column="2" Name="BTN_C" Content="C" Click="BTN_C_Click"></Button>
+                <Button Grid.Row="0" Grid.Column="3" Name="BTN_D" Content="D" Click="BTN_D_Click"></Button>
+                <Button Grid.Row="1" Grid.Column="0" Name="BTN_E" Content="E" Click="BTN_E_Click"></Button>
+                <Button Grid.Row="1" Grid.Column="1" Name="BTN_F" Content="F" Click="BTN_F_Click"></Button>
+                <Button Grid.Row="1" Grid.Column="2" Name="BTN_G" Content="G" Click="BTN_G_Click"></Button>
+                <Button Grid.Row="1" Grid.Column="3" Name="BTN_H" Content="H" Click="BTN_H_Click"></Button>
+                <Button Grid.Row="2" Grid.Column="0" Name="BTN_I" Content="I" Click="BTN_I_Click"></Button>
+                <Button Grid.Row="2" Grid.Column="1" Name="BTN_J" Content="J" Click="BTN_J_Click"></Button>
+                <Button Grid.Row="2" Grid.Column="2" Name="BTN_K" Content="K" Click="BTN_K_Click"></Button>
+                <Button Grid.Row="2" Grid.Column="3" Name="BTN_L" Content="L" Click="BTN_L_Click"></Button>
+                <Button Grid.Row="3" Grid.Column="0" Name="BTN_M" Content="M" Click="BTN_M_Click"></Button>
+                <Button Grid.Row="3" Grid.Column="1" Name="BTN_N" Content="N" Click="BTN_N_Click"></Button>
+                <Button Grid.Row="3" Grid.Column="2" Name="BTN_O" Content="O" Click="BTN_O_Click"></Button>
+                <Button Grid.Row="3" Grid.Column="3" Name="BTN_P" Content="P" Click="BTN_P_Click"></Button>
+                <Button Grid.Row="4" Grid.Column="0" Name="BTN_Q" Content="Q" Click="BTN_Q_Click"></Button>
+                <Button Grid.Row="4" Grid.Column="1" Name="BTN_R" Content="R" Click="BTN_R_Click"></Button>
+                <Button Grid.Row="4" Grid.Column="2" Name="BTN_S" Content="S" Click="BTN_S_Click"></Button>
+                <Button Grid.Row="4" Grid.Column="3" Name="BTN_T" Content="T" Click="BTN_T_Click"></Button>
+                <Button Grid.Row="5" Grid.Column="0" Name="BTN_U" Content="U" Click="BTN_U_Click"></Button>
+                <Button Grid.Row="5" Grid.Column="1" Name="BTN_V" Content="V" Click="BTN_V_Click"></Button>
+                <Button Grid.Row="5" Grid.Column="2" Name="BTN_W" Content="W" Click="BTN_W_Click"></Button>
+                <Button Grid.Row="5" Grid.Column="3" Name="BTN_X" Content="X" Click="BTN_X_Click"></Button>
+                <Button Grid.Row="6" Grid.Column="0" Name="BTN_Y" Content="Y" Click="BTN_Y_Click"></Button>
+                <Button Grid.Row="6" Grid.Column="1" Name="BTN_Z" Content="Z" Click="BTN_Z_Click"></Button>
+
+            </Grid>
+        </Grid>
+                
+        <!-- Zone textbox-->
+        <Grid x:Name="Zone_textbox" Grid.Row="2"></Grid>
+
+        <!-- Zone informations-->
+        <Grid x:Name="Zone_informations" Grid.Row="3">
+            <Label Content="Tom Spaans Hagman v1"></Label>
+        </Grid>
+
+        <!-- Zone de texte pour afficher la réponse -->
+        <TextBox Grid.Row="2" Grid.ColumnSpan="4" Name="TB_Display" FontSize="40"></TextBox>
         
-    </Grid>
+        <!-- Boutons-->
+      
+
+
+
+
+
+        <Grid.Resources>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Margin" Value="2"></Setter>
+                <Setter Property="Background" Value="WhiteSmoke"></Setter>
+                <Setter Property="FontSize" Value="20"></Setter>
+                <Setter Property="Foreground" Value="Black"></Setter>
+
+                <Style.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"></Setter>
+                    </Style>
+                </Style.Resources>
+            </Style>
+        </Grid.Resources>
+        
+
+        
+        </Grid>
 </Window>
