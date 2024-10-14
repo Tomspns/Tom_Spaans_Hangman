@@ -21,12 +21,45 @@ namespace Tom_Spaans_Hangman
     /// </summary>
     public partial class MainWindow : Window
     {
-        
-    }
-    private void BTN_Click(object sender, RoutedEventArgs e)
-    {
-        Button btn = sender as Button;
-        string btnContent = btn.Content.ToString();
-        btn.IsEnabled = false;
+        private string currentWord = "EXAMPLE"; // Exemple de mot pour le jeu
+        private HashSet<string> guessedLetters = new HashSet<string>();
+
+        public MainWindow()
+        {
+            InitializeComponent();
+            UpdateDisplay();
+        }
+
+        private void BTN_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            string btnContent = btn.Content.ToString();
+            btn.IsEnabled = false;
+
+            if (!guessedLetters.Contains(btnContent))
+            {
+                guessedLetters.Add(btnContent);
+                UpdateDisplay();
+            }
+        }
+
+        private void UpdateDisplay()
+        {
+            // Met à jour l'affichage du TextBox en fonction des lettres devinées
+            StringBuilder displayWord = new StringBuilder();
+            foreach (char letter in currentWord)
+            {
+                if (guessedLetters.Contains(letter.ToString()))
+                {
+                    displayWord.Append(letter + " ");
+                }
+                else
+                {
+                    displayWord.Append("_ ");
+                }
+            }
+
+            TB_Display.Text = displayWord.ToString().Trim();
+        }
     }
 }
