@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:Tom_Spaans_Hangman"
         mc:Ignorable="d"
         Title="SPAANS_Hangman" Height="450" Width="800">
+    
+    
     <Grid Background="AntiqueWhite">
 
         <Grid.RowDefinitions>
@@ -78,20 +80,21 @@
 
             </Grid>
         </Grid>
-                
+
         <!-- Zone textbox-->
         <Grid x:Name="Zone_textbox" Grid.Row="2"></Grid>
 
         <!-- Zone informations-->
         <Grid x:Name="Zone_informations" Grid.Row="3">
             <Label Content="Tom Spaans Hagman v1"></Label>
+            <TextBlock x:Name="TB_Lives" Text="Vies restantes: 5" FontSize="20" Margin="5" />
         </Grid>
 
         <!-- Zone de texte pour afficher la réponse -->
         <TextBox Grid.Row="2" Grid.ColumnSpan="4" Name="TB_Display" FontSize="40"></TextBox>
-        
+
         <!-- Boutons-->
-      
+
 
 
 
@@ -111,8 +114,8 @@
                 </Style.Resources>
             </Style>
         </Grid.Resources>
-        
 
-        
-        </Grid>
+
+
+    </Grid>
 </Window>
