@@ -78,6 +78,7 @@
                 <Button Grid.Row="5" Grid.Column="3" Name="BTN_X" Content="X" Click="BTN_Click"></Button>
                 <Button Grid.Row="6" Grid.Column="0" Name="BTN_Y" Content="Y" Click="BTN_Click"></Button>
                 <Button Grid.Row="6" Grid.Column="1" Name="BTN_Z" Content="Z" Click="BTN_Click"></Button>
+                <Button Grid.Row="6" Grid.Column="2" Name="BTN_apostrophe" Content="'" Click="BTN_Click"></Button>
 
             </Grid>
         </Grid>
@@ -87,8 +88,9 @@
 
         <!-- Zone informations-->
         <Grid x:Name="Zone_informations" Grid.Row="3">
-            <Label Content="Tom Spaans Hagman v1" Margin="1"></Label>
+            <Label Content="Tom Spaans Hagman v2" Margin="1"></Label>
             <TextBlock x:Name="TB_Lives" Text="Vies restantes: 7" FontSize="20" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Center" />
+            <TextBlock x:Name="TB_Timer" Text="Temps restant: 60 secondes" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" />
         </Grid>
 
         <!-- Zone de texte pour afficher la réponse -->
