@@ -23,35 +23,24 @@ namespace Tom_Spaans_Hangman
     {
         private List<string> words = new List<string>()
         {
-            "arbre" , "maison" , "ordinateur" , "voiture" , "chien" , "chat" , "ciel" , "plage" , "montagne" , "fleur"
+            "arbre", "maison", "ordinateur", "voiture", "chien", "chat", "ciel", "plage", "montagne", "fleur"
         };
 
         private string currentWord;
         private HashSet<string> guessedLetters = new HashSet<string>();
-        private int lives = 5; // Nombre de vies
+        private int lives = 7; // Nombre de vies
+
+        private List<string> hangmanImages = new List<string>()
+        {
+            "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png"
+        };
 
         public MainWindow()
         {
+            InitializeComponent();
             Random random = new Random();
             currentWord = words[random.Next(words.Count)].ToUpper();
-            InitializeComponent();
             UpdateDisplay();
-        }
-
-        public void DisplayWord()
-        {
-            foreach (char letter in currentWord)
-            {
-                if (guessedLetters.Contains(letter.ToString()))
-                {
-                    Console.Write(letter + " ");
-                }
-                else
-                {
-                    Console.Write("_ ");
-                }
-            }
-            Console.WriteLine();
         }
 
         private void BTN_Click(object sender, RoutedEventArgs e)
@@ -67,19 +56,26 @@ namespace Tom_Spaans_Hangman
                 {
                     lives--; // Perd une vie
                     MessageBox.Show($"Erreur! Il vous reste {lives} vies.");
+                    UpdateHangmanImage();
                 }
 
                 if (lives <= 0)
                 {
                     MessageBox.Show("Vous avez perdu! Le mot était: " + currentWord);
-                    // Réinitialiser le jeu ou fermer
                     ResetGame();
                 }
-
                 else
                 {
                     UpdateDisplay();
                 }
+            }
+        }
+
+        private void UpdateHangmanImage()
+        {
+            if (lives >= 0 && lives < hangmanImages.Count)
+            {
+                HangmanImage.Source = new BitmapImage(new Uri(hangmanImages[7 - lives], UriKind.Relative));
             }
         }
 
@@ -115,7 +111,7 @@ namespace Tom_Spaans_Hangman
         private void ResetGame()
         {
             guessedLetters.Clear();
-            lives = 5; // Réinitialise les vies
+            lives = 7; // Réinitialise les vies
             Random random = new Random();
             currentWord = words[random.Next(words.Count)].ToUpper();
             UpdateDisplay();
