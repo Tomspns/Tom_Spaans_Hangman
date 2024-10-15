@@ -112,5 +112,9 @@
   <ItemGroup>
     <Resource Include="mots_hangman.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="defaite.wav" />
+    <Content Include="victoire.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

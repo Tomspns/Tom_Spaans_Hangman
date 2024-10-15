@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -34,6 +35,9 @@ namespace Tom_Spaans_Hangman
         {
             "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png"
         };
+
+        private string winSoundPath = "C:\\Users\\SLAB27\\Source\\Repos\\Tomspns\\Tom_Spaans_Hangman\\Tom_Spaans_Hangman\\victoire.wav"; // Chemin vers le son de victoire
+        private string loseSoundPath = "C:\\Users\\SLAB27\\Source\\Repos\\Tomspns\\Tom_Spaans_Hangman\\Tom_Spaans_Hangman\\defaite.wav"; // Chemin vers le son de défaite
 
         public MainWindow()
         {
@@ -111,6 +115,7 @@ namespace Tom_Spaans_Hangman
 
                 if (lives <= 0)
                 {
+                    PlaySound(loseSoundPath); // Jouer le son de victoire
                     MessageBox.Show("Vous avez perdu! Le mot était: " + currentWord);
                     ResetGame();
                 }
@@ -152,8 +157,24 @@ namespace Tom_Spaans_Hangman
 
             if (allLettersGuessed)
             {
+                PlaySound(winSoundPath); // Jouer le son de victoire
                 MessageBox.Show("Félicitations ! Vous avez trouvé le mot : " + currentWord);
                 ResetGame();
+            }
+        }
+
+        private void PlaySound(string soundPath)
+        {
+            try
+            {
+                using (SoundPlayer player = new SoundPlayer(soundPath))
+                {
+                    player.PlaySync(); // Joue le son et attend qu'il se termine
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors de la lecture du son : {ex.Message}");
             }
         }
 
