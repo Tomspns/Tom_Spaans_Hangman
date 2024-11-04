@@ -9,10 +9,12 @@
     
     
     <Grid>
+		<!-- Définir l'image de fond de la fenêtre -->
         <Grid.Background>
             <ImageBrush ImageSource="C:\Users\SLAB27\Source\Repos\Tomspns\Tom_Spaans_Hangman\Tom_Spaans_Hangman\konoha-from-naruto.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
 
+		<!-- Définir les lignes de la grille principale -->
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="6*"></RowDefinition>
@@ -31,11 +33,12 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <!-- Zone image-->
+			
+			<!-- Zone image pour afficher l'image du pendu -->
             <Grid x:Name="Zone_image" Grid.Column="0">
             </Grid>
 
-            <!-- Zone keyboard-->
+			<!-- Zone clavier pour les lettres -->
             <Grid x:Name="Zone_keyboard" Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -54,6 +57,8 @@
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
 
+
+				<!-- Boutons pour les lettres A à Z -->
                 <Button Grid.Row="0" Grid.Column="0" Name="BTN_A" Content="A" Click="BTN_Click"></Button>
                 <Button Grid.Row="0" Grid.Column="1" Name="BTN_B" Content="B" Click="BTN_Click"></Button>
                 <Button Grid.Row="0" Grid.Column="2" Name="BTN_C" Content="C" Click="BTN_Click"></Button>
@@ -85,7 +90,7 @@
             </Grid>
         </Grid>
 
-        <!-- Zone textbox-->
+		<!-- Zone pour afficher la réponse -->
         <Grid x:Name="Zone_textbox" Grid.Row="2"></Grid>
 
         <!-- Zone informations-->
@@ -95,16 +100,10 @@
             <TextBlock x:Name="TB_Timer" Text="Temps restant: 60 secondes" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" />
         </Grid>
 
-        <!-- Zone de texte pour afficher la réponse -->
+        
         <TextBox Grid.Row="2" Grid.ColumnSpan="4" Name="TB_Display" FontSize="40" Background="Transparent" BorderBrush="Transparent"></TextBox>
 
         <!-- Boutons-->
-
-
-
-
-
-
         <Grid.Resources>
             <Style TargetType="{x:Type Button}">
                 <Setter Property="Margin" Value="2"></Setter>

@@ -24,14 +24,14 @@ namespace Tom_Spaans_Hangman
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string filePath = "C:\\Users\\SLAB27\\Source\\Repos\\Tomspns\\Tom_Spaans_Hangman\\Tom_Spaans_Hangman\\mots_hangman.txt"; // Remplacez par le chemin de votre fichier
-        private string currentWord;
-        private HashSet<string> guessedLetters = new HashSet<string>();
+        private string filePath = "C:\\Users\\SLAB27\\Source\\Repos\\Tomspns\\Tom_Spaans_Hangman\\Tom_Spaans_Hangman\\mots_hangman.txt"; // chemin de votre fichier
+        private string currentWord; // mot à deviner
+        private HashSet<string> guessedLetters = new HashSet<string>(); // lettres déjà devinées
         private int lives = 7; // Nombre de vies
         private DispatcherTimer timer; // Chronomètre
         private int timeLeft = 60; // Temps en secondes
 
-        private List<string> hangmanImages = new List<string>()
+        private List<string> hangmanImages = new List<string>() // liste des images
         {
             "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png"
         };
@@ -42,21 +42,21 @@ namespace Tom_Spaans_Hangman
         public MainWindow()
         {
             InitializeComponent();
-            currentWord = ChooseRandomWord().ToUpper(); // Choisir un mot aléatoire
-            UpdateDisplay();
-            StartTimer(); // Démarrer le chronomètre
+            currentWord = ChooseRandomWord().ToUpper(); // choisir un mot aléatoire
+            UpdateDisplay(); // met à jour l'affichage
+            StartTimer(); // démarre le chronomètre
         }
 
         private string ChooseRandomWord()
         {
             try
             {
-                // Lire tous les mots du fichier
+                // lire tous les mots du fichier
                 List<string> words = new List<string>(File.ReadAllLines(filePath));
 
                 if (words.Count == 0)
                 {
-                    throw new Exception("Le fichier ne contient aucun mot.");
+                    throw new Exception("Le fichier ne contient aucun mot."); // gère le cas où le fichier est vide
                 }
 
                 // Choisir un mot aléatoire
@@ -78,15 +78,15 @@ namespace Tom_Spaans_Hangman
 
         private void StartTimer()
         {
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
+            timer = new DispatcherTimer(); // créer un chronomètre
+            timer.Interval = TimeSpan.FromSeconds(1); // définir un intervalle de 1s
             timer.Tick += Timer_Tick;
-            timer.Start();
+            timer.Start(); // démarre le chronomètre
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            timeLeft--;
+            timeLeft--; // décrémente le temps
             TB_Timer.Text = "Temps restant: " + timeLeft;
 
             if (timeLeft <= 0)
@@ -99,23 +99,23 @@ namespace Tom_Spaans_Hangman
 
         private void BTN_Click(object sender, RoutedEventArgs e)
         {
-            Button btn = sender as Button;
-            string btnContent = btn.Content.ToString();
-            btn.IsEnabled = false;
+            Button btn = sender as Button; //récupère le bouton qui a été cliqué
+            string btnContent = btn.Content.ToString(); // récupère le contenu du bouton
+            btn.IsEnabled = false; // désactive le bouton après le clic
 
             if (!guessedLetters.Contains(btnContent))
             {
-                guessedLetters.Add(btnContent);
+                guessedLetters.Add(btnContent); // ajouter la lettre 
                 if (!currentWord.Contains(btnContent.ToUpper()))
                 {
-                    lives--; // Perd une vie
+                    lives--; // Perd une vie si la lettre n'est pas dans le mot
                     MessageBox.Show($"Erreur! Il vous reste {lives} vies.");
-                    UpdateHangmanImage();
+                    UpdateHangmanImage(); // Mettre à jour l'image du pendu
                 }
 
                 if (lives <= 0)
                 {
-                    PlaySound(loseSoundPath); // Jouer le son de victoire
+                    PlaySound(loseSoundPath); // Jouer le son de défaite
                     MessageBox.Show("Vous avez perdu! Le mot était: " + currentWord);
                     ResetGame();
                 }
@@ -136,19 +136,19 @@ namespace Tom_Spaans_Hangman
 
         private void UpdateDisplay()
         {
-            StringBuilder displayWord = new StringBuilder();
-            bool allLettersGuessed = true;
+            StringBuilder displayWord = new StringBuilder(); // construire le mot à afficher
+            bool allLettersGuessed = true; // vérifier si toutes les lettres ont été devinées
 
             foreach (char letter in currentWord)
             {
                 if (guessedLetters.Contains(letter.ToString()))
                 {
-                    displayWord.Append(letter + " ");
+                    displayWord.Append(letter + " "); // afficher la lettre si devinée
                 }
                 else
                 {
-                    displayWord.Append("_ ");
-                    allLettersGuessed = false;
+                    displayWord.Append("_ "); // afficher un underscore si non devinée
+                    allLettersGuessed = false; // indiquer qu'il reste des lettres à deviner
                 }
             }
 
@@ -169,24 +169,26 @@ namespace Tom_Spaans_Hangman
             {
                 using (SoundPlayer player = new SoundPlayer(soundPath))
                 {
-                    player.PlaySync(); // Joue le son et attend qu'il se termine
+                    player.PlaySync(); // joue le son et attend qu'il se termine
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erreur lors de la lecture du son : {ex.Message}");
+                MessageBox.Show($"Erreur lors de la lecture du son : {ex.Message}"); // gère les erreurs de lecture
             }
         }
 
         private void ResetGame()
         {
-            guessedLetters.Clear();
-            lives = 7;
-            timeLeft = 60; // Réinitialiser le temps
-            currentWord = ChooseRandomWord().ToUpper(); // Choisir un nouveau mot
+            guessedLetters.Clear(); // réinitialiser les lettres devinées
+            lives = 7; // réinitialiser le nombre de vies
+            timeLeft = 60; // réinitialiser le temps
+            currentWord = ChooseRandomWord().ToUpper(); // choisir un nouveau mot
             UpdateDisplay();
-            TB_Timer.Text = "Temps restant: 60"; // Réinitialiser l'affichage du temps
-            StartTimer(); // Redémarrer le chronomètre
+            TB_Timer.Text = "Temps restant: 60"; // réinitialiser l'affichage du temps
+            StartTimer(); // redémarrer le chronomètre
+
+            // réactive les lettres du clavier 
             foreach (UIElement element in Zone_keyboard.Children)
             {
                 if (element is Button button)
